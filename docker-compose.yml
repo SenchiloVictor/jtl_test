@@ -4,10 +4,9 @@ services:
   php-apache:
     container_name: cms-shop-app
     build:
-      context: docker/php
+      context: docker/php-apache
     volumes:
     - ./app:/var/www/html
-    - ./docker/apache/sites-available:/etc/apache2/sites-available
     depends_on:
       - mysql
     ports:

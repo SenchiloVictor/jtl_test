@@ -1,0 +1,4 @@
+DB NAME cms_shop;
+DB HOST mysql
+DB USER root;
+DB PASS root;
