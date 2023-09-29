@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  php-apache:
+    container_name: cms-shop-app
+    build:
+      context: docker/php
+    volumes:
+    - ./app:/var/www/html
+    - ./docker/apache/sites-available:/etc/apache2/sites-available
+    depends_on:
+      - mysql
+    ports:
+      - 80:80
+    user: "${UID}:${GID}"
+    networks:
+      - cms_shop_net
+
+  mysql:
+    container_name: cms-shop-mysql
+    image: mysql:5.7
+    command: --init-file /docker/mysql/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./docker/mysql:/docker/mysql
+      - ./docker/volumes/mysql:/var/lib/mysql
+    networks:
+      - cms_shop_net
+
+networks:
+  cms_shop_net:
+
+volumes:
+  cms_shop_mysql:
