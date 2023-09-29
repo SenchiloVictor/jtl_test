@@ -1,3 +1,5 @@
+docker-compose up -d --build
+
 DB NAME cms_shop;
 DB HOST mysql
 DB USER root;
